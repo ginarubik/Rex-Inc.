@@ -5,58 +5,54 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        RexController controller = new RexController();
+        RexService service = new RexService();
 
         while (true) {
 
-            String line = scanner.nextLine();
+            String input = scanner.nextLine();
 
-            if (line.equals("Quit")) break;
+            if (input.equals("Quit")) break;
 
-            String[] tokens = line.split("\\s*\\|\\s*");
+            String[] tokens = input.split("\\s*\\|\\s*");
 
-            String command = tokens[0];
-
-            switch (command) {
+            switch (tokens[0]) {
 
                 case "RegisterAdoptionCenter":
-                    controller.registerAdoptionCenter(tokens[1]);
+                    service.registerAdoptionCenter(tokens[1]);
                     break;
 
                 case "RegisterDog":
-                    controller.registerDog(
-                            tokens[1],
+                    service.registerDog(tokens[1],
                             Integer.parseInt(tokens[2]),
                             Integer.parseInt(tokens[3]),
                             tokens[4]);
                     break;
 
                 case "RegisterCat":
-                    controller.registerCat(
-                            tokens[1],
+                    service.registerCat(tokens[1],
                             Integer.parseInt(tokens[2]),
                             Integer.parseInt(tokens[3]),
                             tokens[4]);
                     break;
 
                 case "SendForCleansing":
-                    controller.sendForCleansing(tokens[1]);
+                    service.sendForCleansing(tokens[1]);
                     break;
 
                 case "Cleanse":
-                    controller.cleanse();
+                    service.cleanse();
                     break;
 
                 case "Adopt":
-                    controller.adopt(tokens[1]);
+                    service.adopt(tokens[1]);
                     break;
             }
         }
 
         System.out.println("Rex Incorporated Regular Statistics");
-        System.out.println("Adoption Centers: " + controller.getAdoptionCentersCount());
-        System.out.println("Adopted Animals: " + controller.getAdoptedAnimals());
-        System.out.println("Animals Awaiting Adoption: " + controller.getAnimalsAwaitingAdoption());
-        System.out.println("Animals Awaiting Cleansing: " + controller.getAnimalsAwaitingCleansing());
+        System.out.println("Adoption Centers: " + service.centersCount());
+        System.out.println("Adopted Animals: " + service.adoptedPets());
+        System.out.println("Animals Awaiting Adoption: " + service.awaitingAdoption());
+        System.out.println("Animals Awaiting Cleansing: " + service.awaitingCleansing());
     }
 }
