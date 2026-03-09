@@ -2,31 +2,30 @@ import java.util.*;
 
 public class CleansingCenter {
 
-    private Map<Animal, AdoptionCenter> animals;
+    private Map<Pet, AdoptionCenter> pets;
 
     public CleansingCenter() {
-        animals = new HashMap<>();
+        pets = new HashMap<>();
     }
 
-    public void addAnimal(Animal animal, AdoptionCenter center) {
-        animals.put(animal, center);
-    }
-
-    public int getAnimalsCount() {
-        return animals.size();
+    public void addPet(Pet pet, AdoptionCenter center) {
+        pets.put(pet, center);
     }
 
     public void cleanse() {
 
-        for (Map.Entry<Animal, AdoptionCenter> entry : animals.entrySet()) {
+        for (Map.Entry<Pet, AdoptionCenter> entry : pets.entrySet()) {
 
-            Animal animal = entry.getKey();
-            AdoptionCenter center = entry.getValue();
+            Pet pet = entry.getKey();
+            pet.cleanse();
 
-            animal.cleanse();
-            center.addAnimal(animal);
+            entry.getValue().addPet(pet);
         }
 
-        animals.clear();
+        pets.clear();
+    }
+
+    public int awaitingCleansing() {
+        return pets.size();
     }
 }
