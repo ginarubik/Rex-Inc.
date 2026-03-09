@@ -4,44 +4,47 @@ import java.util.stream.Collectors;
 public class AdoptionCenter {
 
     private String name;
-    private List<Animal> animals;
+    private List<Pet> pets;
 
     public AdoptionCenter(String name) {
         this.name = name;
-        this.animals = new ArrayList<>();
+        this.pets = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public void addAnimal(Animal animal) {
-        animals.add(animal);
+    public void addPet(Pet pet) {
+        pets.add(pet);
     }
 
-    public List<Animal> sendForCleansing() {
+    public List<Pet> sendForCleansing() {
 
-        List<Animal> result = animals.stream()
-                .filter(a -> !a.isCleansed())
+        List<Pet> toSend = pets.stream()
+                .filter(p -> !p.isCleansed())
                 .collect(Collectors.toList());
 
-        animals.removeAll(result);
+        pets.removeAll(toSend);
 
-        return result;
+        return toSend;
     }
 
     public int adopt() {
 
-        List<Animal> adopted = animals.stream()
-                .filter(Animal::isCleansed)
+        List<Pet> adopted = pets.stream()
+                .filter(Pet::isCleansed)
                 .collect(Collectors.toList());
 
-        animals.removeAll(adopted);
+        pets.removeAll(adopted);
 
         return adopted.size();
     }
 
-    public int getCleansedAnimalsCount() {
-        return (int) animals.stream().filter(Animal::isCleansed).count();
+    public int awaitingAdoption() {
+
+        return (int) pets.stream()
+                .filter(Pet::isCleansed)
+                .count();
     }
 }
