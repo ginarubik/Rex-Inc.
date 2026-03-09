@@ -1,10 +1,10 @@
-public abstract class Animal {
+public abstract class Pet {
 
     private String name;
     private int age;
     private boolean cleansed;
 
-    public Animal(String name, int age) {
+    protected Pet(String name, int age) {
         this.name = name;
         this.age = age;
         this.cleansed = false;
