@@ -6,7 +6,7 @@ This class belongs to the package:
 
 hu.progmasters.rex.pets
 
-So the folder structure would look like:
+Folder structure:
 
 hu
  └─ progmasters
